@@ -13,6 +13,7 @@ class Character
   end
 
   def duel strength
+    status
     if self.strength > strength
       return true
     else
@@ -39,7 +40,7 @@ class Character
 
   private
   def status
-    puts "冒險者 #{@name} 還擁有 #{@stamina} 的體力"
+    puts "冒險者 #{@name} 還擁有 #{@strength} 的力量"
   end
 end
 
@@ -74,21 +75,17 @@ decision = gets.chomp.to_i
 if decision == 1
   ans = @cc.duel @monster.strength
   if ans
-    puts "你的力量壓制住怪物，在交手幾回合後，你一拳將怪物給打飛出去！"
+    # duel
   else
-    puts ""
+    puts "你的力量太弱了，連怪物的一拳都抵擋不了，交手瞬間被揍飛"
   end
 elsif decision == 2
   if @cc.move > 20
-
+    puts "一眨眼，"
   end
 else
   puts "你猶豫不決的期間，不小心踢到了石頭，怪物發現了你，你只能逃回城鎮去。"
 end
-
-
-
-puts "你的冒險者 #{@cc.name} 準備出發去迷霧山莊了！"
 
 
 
