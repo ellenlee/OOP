@@ -4,8 +4,8 @@ class Character
   BALANCE = 20
   @@Characterno = 0
 
-  def initialize strength
-    @name = "Arch"
+  def initialize(strength,name)
+    @name = name
     @hp = 40
     @speed = 15
     @strength = strength
