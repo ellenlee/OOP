@@ -1,6 +1,6 @@
 class Character
   attr_accessor :name,:speed
-  def initialize name
+  def initialize(name)
     @name = name
     @stamina = 7
     @speed = 1
@@ -43,7 +43,7 @@ loc = 0
 count = 0
 
 while( loc < 21)
-  puts "你的冒險者 #{@yourchar.get_name} 在 1 小時內奔走了 #{@yourchar.move} 公里" 
+  puts "你的冒險者 #{@yourchar.get_name} 在 1 小時內奔走了 #{@yourchar.move} 公里"
   loc += @yourchar.move
   @yourchar.use_stamina
   count += 1
