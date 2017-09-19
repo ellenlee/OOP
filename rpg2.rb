@@ -1,49 +1,94 @@
 class Character
-  attr_accessor :name
-  def initialize name
-    @name = name
+  attr_accessor :name,:speed,:strength
+
+  BALANCE = 20
+  @@Characterno = 0
+
+  def initialize strength
+    @name = "Arch"
     @hp = 40
-    @speed = 1
+    @speed = 15
+    @strength = strength
+    @@Characterno += 1
   end
 
-  def get_name      # 教 更換成 attr_accessor
-    @name
+  def duel strength
+    if self.strength > strength
+      return true
+    else
+      return false
+    end
   end
 
-  def move
-    return @speed
+  def skip
+    return @speed * 1.5
   end
 
-  def  still_alive
-    return !(@hp <= 0)
+  def is_balance
+    puts self.strength.to_s
+    if (self.strength + self.speed) > BALANCE
+      return false
+    else
+      return true
+    end
+  end
+
+  def  still_can_run
+    return @stamina > 0
+  end
+
+  private
+  def status
+    puts "冒險者 #{@name} 還擁有 #{@stamina} 的體力"
   end
 end
 
-puts "請問你的冒險者名稱？"
-charname = gets
-charname.delete!("\n")
-
-@yourchar = Character.new charname
-
-puts "你的冒險者 #{@yourchar.name} 準備出發去迷霧山莊了！"
-
-
-
-loc = 0
-count = 0
-
-while( loc < 21 && count < 7)
-  puts "你的冒險者 #{@yourchar.get_name} 在 1 小時內奔走了 #{@yourchar.move} 公里" 
-  loc += @yourchar.move
-  count += 1
+def isint inputer
+  return ans = inputer =~ /\A\d+\z/ ? true : false
 end
 
-total = @yourchar.move * count
+puts "請輸入你的冒險者的力量！力量和速度（速度請在執行前調整喔～）總和不可以超過 20！"
+strength = gets.chomp
 
-if count >= 7
-  puts "你跑了 #{count} 小時，跑太慢了！糧食都已經吃光了！只好回去市鎮補貨再來過！"
-elsif loc > 24
-  puts "你跑了 #{total} 步跑過了頭，你錯過了該去的地方，只好折返回城鎮重新來過！"
+valid = isint strength
+
+if !valid
+  abort "你似乎輸入了一些奇怪的資料，冒險者因不堪資料錯誤而中毒身亡了。"
+end
+
+strength = strength.to_i
+@cc = Character.new strength
+@monster = Character.new 18
+
+if !@cc.is_balance
+  abort "力量和速度總和不可以超過 20 ... 實力超過的話應該去魔王城，而不是迷霧森林了..."
+end
+
+puts "你的冒險者 #{@cc.name} 抵達迷霧森林，眼前出現了一隻怪物，請問他該怎麼做？"
+puts "1 當然是直接打趴它"
+puts "2 神不知鬼不覺地繞過"
+puts "選擇打趴它，請輸入 1 ；選擇閃過它，請輸入 2 "
+
+decision = gets.chomp.to_i
+
+if decision == 1
+  ans = @cc.duel @monster.strength
+  if ans
+    puts "你的力量壓制住怪物，在交手幾回合後，你一拳將怪物給打飛出去！"
+  else
+    puts ""
+  end
+elsif decision == 2
+  if @cc.move > 20
+
+  end
 else
-  puts "#{@yourchar.get_name} 花了 #{count} 回合抵達迷霧森林！準備迎接下一個挑戰吧！"
+  puts "你猶豫不決的期間，不小心踢到了石頭，怪物發現了你，你只能逃回城鎮去。"
 end
+
+
+
+puts "你的冒險者 #{@cc.name} 準備出發去迷霧山莊了！"
+
+
+
