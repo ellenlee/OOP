@@ -35,16 +35,14 @@ charname.delete!("\n")
 
 @yourchar = Character.new charname
 
-puts "你的冒險者 #{@yourchar.name} 準備出發去迷霧山莊了！"
-
-
+puts "你的冒險者 #{@yourchar.name} 準備出發去迷霧森林了！"
 
 loc = 0
 count = 0
 
 while( loc < 21)
   puts "你的冒險者 #{@yourchar.get_name} 在 1 小時內奔走了 #{@yourchar.move} 公里" 
-  loc += @yourchar.move
+  loc = loc + @yourchar.move
   @yourchar.use_stamina
   count += 1
   if !@yourchar.still_can_run
