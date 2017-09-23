@@ -1,15 +1,15 @@
 class Character
-  attr_accessor :name,:speed,:strength
+  attr_accessor :name, :speed, :strength
 
   BALANCE = 20
-  @@Characterno = 0
+  @@Character_count = 0
 
   def initialize(strength,name)
     @name = name
     @hp = 40
     @speed = 3
     @strength = strength
-    @@Characterno += 1
+    @@Character_count += 1
   end
 
   def attack
@@ -111,4 +111,3 @@ if( win == 1 )
 else
   abort "#{@cc.name} 很勉強地穩住陣腳，但身體所受的傷害已經太重，只能落荒而逃。"
 end
-

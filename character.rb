@@ -1,45 +1,17 @@
 class Character
-  attr_accessor :name,:speed,:strength
+  attr_accessor :name
 
-  BALANCE = 20
-  @@Characterno = 0
-
-  def initialize(strength,name)
+  def initialize(name)
     @name = name
-    @hp = 40
-    @speed = 15
-    @strength = strength
-    @@Characterno += 1
-  end
-
-  def duel strength
-    status
-    if self.strength > strength
-      return true
-    else
-      return false
-    end
-  end
-
-  def skip
-    return @speed * 1.5
-  end
-
-  def is_balance
-    puts self.strength.to_s
-    if (self.strength + self.speed) > BALANCE
-      return false
-    else
-      return true
-    end
-  end
-
-  def  still_can_run
-    return @stamina > 0
-  end
-
-  private
-  def status
-    puts "冒險者 #{@name} 還擁有 #{@strength} 的力量"
+    puts "你召喚了一個名叫 #{@name} 的勇者！"
   end
 end
+
+puts "請問你的勇者名稱？"
+hero_name = gets.chomp
+
+hero = Character.new(hero_name)
+puts "你的勇者 #{hero.name} 準備出發去迷霧森林了！"
+
+hero.name = "Bernard"
+puts "你的勇者名稱更新為 #{hero.name}"
