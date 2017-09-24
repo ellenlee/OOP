@@ -3,7 +3,12 @@ class Character
 
   def initialize(name)
     @name = name
-    puts "你召喚了一個名叫 #{@name} 的勇者！"
+    @stamina = 7
+    puts "你召喚了一個名叫 #{@name} 的勇者！(體力值: #{@stamina})"
+  end
+
+  def use_stamina
+    @stamina -= 1
   end
 end
 
@@ -13,5 +18,4 @@ hero_name = gets.chomp
 hero = Character.new(hero_name)
 puts "你的勇者 #{hero.name} 準備出發去迷霧森林了！"
 
-hero.name = "Bernard"
-puts "你的勇者名稱更新為 #{hero.name}"
+hero.use_stamina
